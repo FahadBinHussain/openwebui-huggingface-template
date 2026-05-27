@@ -1,0 +1,14 @@
+# Hugging Face variables
+HOST=0.0.0.0
+PORT=7860
+DATA_DIR=/data/open-webui
+WEBUI_NAME=Open WebUI
+ENABLE_SIGNUP=false
+DEFAULT_USER_ROLE=user
+
+# Optional LiteLLM bridge. Prefer HF secrets for API keys.
+LITELLM_BASE_URL=https://your-litellm-space.hf.space/v1
+
+# Hugging Face secrets
+WEBUI_SECRET_KEY=replace-with-a-stable-secret
+LITELLM_API_KEY=replace-if-litellm-requires-a-key
