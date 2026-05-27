@@ -9,6 +9,8 @@ license: mit
 
 Thin wrapper around the official Open WebUI Docker image.
 
+[Live Space](https://bequietambient-ai.hf.space/) · [Hugging Face repo](https://huggingface.co/spaces/bequietambient/ai)
+
 - Upstream Open WebUI stays untouched.
 - Hugging Face uses the same wrapper files as local Docker.
 - Secrets stay in environment variables, not in this repo.
@@ -36,10 +38,12 @@ Keep `.env.local` uncommitted. Use it for values such as `WEBUI_SECRET_KEY`, `OP
 Upload this folder to a Docker Space:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Downloads\mainframe\hf-account.ps1 run bequietambient@gmail.com upload bequietambient/openwebui-huggingface-template . --type space
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Downloads\mainframe\hf-account.ps1 run bequietambient@gmail.com upload bequietambient/ai . --type space
 ```
 
 Set secrets and variables in the Space settings. At minimum, set a stable `WEBUI_SECRET_KEY`; without persistent storage, generated keys and SQLite data will not survive rebuilds.
+
+This Space mounts the private bucket `hf://buckets/bequietambient/ai-data:/data`, so Open WebUI state under `/data/open-webui` survives normal restarts and rebuilds.
 
 For a fresh instance, keep `ENABLE_SIGNUP=true` until the first account is created. Open WebUI promotes the first account to admin, then signup can be disabled from the admin panel or by changing the Space variable.
 
