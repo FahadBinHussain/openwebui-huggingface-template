@@ -41,6 +41,8 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Downloads
 
 Set secrets and variables in the Space settings. At minimum, set a stable `WEBUI_SECRET_KEY`; without persistent storage, generated keys and SQLite data will not survive rebuilds.
 
+For a fresh instance, keep `ENABLE_SIGNUP=true` until the first account is created. Open WebUI promotes the first account to admin, then signup can be disabled from the admin panel or by changing the Space variable.
+
 ## Notes
 
 Open WebUI's official Docker examples expose container port `8080`; this wrapper sets `PORT=7860` so Hugging Face can route the Space directly. The wrapper still starts Open WebUI through its upstream `/app/backend/start.sh`.

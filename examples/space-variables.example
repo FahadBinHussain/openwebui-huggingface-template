@@ -3,8 +3,10 @@ HOST=0.0.0.0
 PORT=7860
 DATA_DIR=/data/open-webui
 WEBUI_NAME=Open WebUI
-ENABLE_SIGNUP=false
-DEFAULT_USER_ROLE=user
+ENABLE_SIGNUP=true
+DEFAULT_USER_ROLE=pending
+CORS_ALLOW_ORIGIN=https://your-openwebui-space.hf.space
+USER_AGENT=openwebui-huggingface-template
 
 # Optional LiteLLM bridge. Prefer HF secrets for API keys.
 LITELLM_BASE_URL=https://your-litellm-space.hf.space/v1
