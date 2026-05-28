@@ -45,6 +45,15 @@ Set secrets and variables in the Space settings. At minimum, set a stable `WEBUI
 
 This Space mounts the private bucket `hf://buckets/bequietambient/ai-data:/data`, so Open WebUI state under `/data/open-webui` survives normal restarts and rebuilds.
 
+The live Space is connected to the LiteLLM Hugging Face proxy through Open WebUI's OpenAI-compatible variables:
+
+```text
+OPENAI_API_BASE_URLS=https://awdafw-litellm-huggingface-template.hf.space/v1
+OPENAI_API_KEYS=sk-placeholder
+```
+
+The placeholder key is intentional for the current LiteLLM Space because the proxy is not enforcing a `LITELLM_MASTER_KEY`.
+
 For a fresh instance, keep `ENABLE_SIGNUP=true` until the first account is created. Open WebUI promotes the first account to admin, then signup can be disabled from the admin panel or by changing the Space variable.
 
 ## Notes
