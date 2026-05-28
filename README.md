@@ -9,8 +9,6 @@ license: mit
 
 Thin wrapper around the official Open WebUI Docker image.
 
-[Live Space](https://bequietambient-ai.hf.space/) · [Hugging Face repo](https://huggingface.co/spaces/bequietambient/ai)
-
 - Upstream Open WebUI stays untouched.
 - Hugging Face uses the same wrapper files as local Docker.
 - Secrets stay in environment variables, not in this repo.
@@ -38,21 +36,21 @@ Keep `.env.local` uncommitted. Use it for values such as `WEBUI_SECRET_KEY`, `OP
 Upload this folder to a Docker Space:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\Users\Admin\Downloads\mainframe\hf-account.ps1 run bequietambient@gmail.com upload bequietambient/ai . --type space
+hf upload YOUR_USERNAME/openwebui-huggingface-template . --repo-type space
 ```
 
 Set secrets and variables in the Space settings. At minimum, set a stable `WEBUI_SECRET_KEY`; without persistent storage, generated keys and SQLite data will not survive rebuilds.
 
-This Space mounts the private bucket `hf://buckets/bequietambient/ai-data:/data`, so Open WebUI state under `/data/open-webui` survives normal restarts and rebuilds.
+For persistent storage, mount any private Hugging Face storage location at `/data`. Open WebUI state under `/data/open-webui` will then survive normal restarts and rebuilds.
 
-The live Space is connected to the LiteLLM Hugging Face proxy through Open WebUI's OpenAI-compatible variables:
+To connect a LiteLLM proxy, set the wrapper variables below. The start script maps them to Open WebUI's OpenAI-compatible variables:
 
 ```text
-OPENAI_API_BASE_URLS=https://awdafw-litellm-huggingface-template.hf.space/v1
-OPENAI_API_KEYS=sk-placeholder
+LITELLM_BASE_URL=https://your-litellm-space.hf.space/v1
+LITELLM_API_KEY=replace-if-litellm-requires-a-key
 ```
 
-The placeholder key is intentional for the current LiteLLM Space because the proxy is not enforcing a `LITELLM_MASTER_KEY`.
+If your LiteLLM proxy does not enforce a master key, leave `LITELLM_API_KEY` unset.
 
 For a fresh instance, keep `ENABLE_SIGNUP=true` until the first account is created. Open WebUI promotes the first account to admin, then signup can be disabled from the admin panel or by changing the Space variable.
 
